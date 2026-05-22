@@ -22,9 +22,20 @@ fn main() {
                 String::new()
             });
 
+            let mut token_type: String;
+            let mut lexeme: String;
+            let mut literal: String;
+
             // TODO: Uncomment the code below to pass the first stage
             if !file_contents.is_empty() {
-               panic!("Scanner not implemented");
+               // panic!("Scanner not implemented");
+               for chars in file_contents {
+                   match char {
+                       '(' => println!("LEFT_PAREN ( null"),
+                       ')' => println!("RIGHT_PAREN ) null"),
+                       _ => panic!("Scanner not implemented")
+                   }
+               }
             } else {
                 println!("EOF  null"); // Placeholder, replace this line when implementing the scanner
             }
