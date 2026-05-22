@@ -30,7 +30,7 @@ fn main() {
             if !file_contents.is_empty() {
                // panic!("Scanner not implemented");
                for chars in file_contents.chars() {
-                   match char {
+                   match chars {
                        '(' => println!("LEFT_PAREN ( null"),
                        ')' => println!("RIGHT_PAREN ) null"),
                        _ => panic!("Scanner not implemented")
