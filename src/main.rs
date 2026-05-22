@@ -29,7 +29,7 @@ fn main() {
             // TODO: Uncomment the code below to pass the first stage
             if !file_contents.is_empty() {
                // panic!("Scanner not implemented");
-               for chars in file_contents {
+               for chars in file_contents.chars() {
                    match char {
                        '(' => println!("LEFT_PAREN ( null"),
                        ')' => println!("RIGHT_PAREN ) null"),
