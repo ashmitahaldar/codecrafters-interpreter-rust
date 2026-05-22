@@ -35,6 +35,7 @@ fn main() {
                        ')' => println!("RIGHT_PAREN ) null"),
                        _ => panic!("Scanner not implemented")
                    }
+                   println!("EOF null")
                }
             } else {
                 println!("EOF  null"); // Placeholder, replace this line when implementing the scanner
