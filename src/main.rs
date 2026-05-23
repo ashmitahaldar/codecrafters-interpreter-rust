@@ -1,6 +1,7 @@
 #![allow(unused_variables)]
 use std::env;
 use std::fs;
+use std::process;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -25,6 +26,7 @@ fn main() {
             let mut token_type: String;
             let mut lexeme: String;
             let mut literal: String;
+            let mut had_error: bool = false;
 
             // TODO: Uncomment the code below to pass the first stage
             if !file_contents.is_empty() {
@@ -42,16 +44,31 @@ fn main() {
                        ';' => println!("SEMICOLON ; null"),
                        '/' => println!("SLASH / null"),
                        '*' => println!("STAR * null"),
-                       _ => panic!("Scanner not implemented")
+                       _ => {
+                           eprintln!("[line 1] Error: Unexpected character: {}", chars);
+                           had_error = true;
+                       }
                    }
                }
                println!("EOF  null")
             } else {
                 println!("EOF  null"); // Placeholder, replace this line when implementing the scanner
             }
+            if had_error {
+                process::exit(65);
+            }
         }
         _ => {
             eprintln!("Unknown command: {}", command);
         }
     }
+}
+
+fn error(line: i32, message: String) {
+    report(line, "", message);
+}
+
+fn report(line: i32, location: &str, message: String) {
+    println!("[line {}{}{}{}{}", line.to_string(), "] Error", location, ": ", message);
+    // hadError = true;
 }
