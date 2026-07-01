@@ -3,6 +3,22 @@ use std::env;
 use std::fs;
 use std::process;
 
+pub enum TokenType {
+    LeftParen,
+    RightParen,
+    LeftBrace,
+    RightBrace,
+    Comma,
+    Dot,
+    Minus,
+    Plus,
+    Semicolon,
+    Slash,
+    Star,
+    Equal,
+    EqualEqual,
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
@@ -18,7 +34,7 @@ fn main() {
             // You can use print statements as follows for debugging, they'll be visible when running tests.
             eprintln!("Logs from your program will appear here!");
 
-            let file_contents = fs::read_to_string(filename).unwrap_or_else(|_| {
+            let file_content = fs::read_to_string(filename).unwrap_or_else(|_| {
                 eprintln!("Failed to read file {}", filename);
                 String::new()
             });
@@ -29,10 +45,11 @@ fn main() {
             let mut had_error: bool = false;
 
             // TODO: Uncomment the code below to pass the first stage
-            if !file_contents.is_empty() {
+            if !file_content.is_empty() {
                // panic!("Scanner not implemented");
-               for chars in file_contents.chars() {
-                   match chars {
+               let mut chars = file_content.chars().peekable();
+               while let Some(character) = chars.next() {
+                   match character {
                        '(' => println!("LEFT_PAREN ( null"),
                        ')' => println!("RIGHT_PAREN ) null"),
                        '{' => println!("LEFT_BRACE {{ null"),
@@ -44,8 +61,18 @@ fn main() {
                        ';' => println!("SEMICOLON ; null"),
                        '/' => println!("SLASH / null"),
                        '*' => println!("STAR * null"),
+                       // Assignemnt and equality operators
+                       '=' => {
+                           if chars.peek() == Some(&'=') { // Use & since peek() gives a reference
+                               chars.next();
+                               println!("EQUAL_EQUAL == null");
+                           } else {
+                               println!("EQUAL = null");
+                           }
+                       },
+
                        _ => {
-                           eprintln!("[line 1] Error: Unexpected character: {}", chars);
+                           eprintln!("[line 1] Error: Unexpected character: {}", character);
                            had_error = true;
                        }
                    }
