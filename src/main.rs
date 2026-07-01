@@ -17,6 +17,8 @@ pub enum TokenType {
     Star,
     Equal,
     EqualEqual,
+    Bang,
+    BangEqual,
 }
 
 fn main() {
@@ -68,6 +70,15 @@ fn main() {
                                println!("EQUAL_EQUAL == null");
                            } else {
                                println!("EQUAL = null");
+                           }
+                       },
+                       // Inequality and negation operators
+                       '!' => {
+                           if chars.peek() == Some(&'=') {
+                               chars.next();
+                               println!("BANG_EQUAL != null");
+                           } else {
+                               println!("BANG ! null");
                            }
                        },
 
