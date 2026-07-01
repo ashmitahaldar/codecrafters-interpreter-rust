@@ -81,6 +81,23 @@ fn main() {
                                println!("BANG ! null");
                            }
                        },
+                       // Relational operators
+                       '>' => {
+                           if chars.peek() == Some(&'=') {
+                               chars.next();
+                               println!("GREATER_EQUAL >= null");
+                           } else {
+                               println!("GREATER > null");
+                           }
+                       },
+                       '<' => {
+                           if chars.peek() == Some(&'=') {
+                               chars.next();
+                               println!("LESS_EQUAL <= null");
+                           } else {
+                               println!("LESS < null");
+                           }
+                       },
 
                        _ => {
                            eprintln!("[line 1] Error: Unexpected character: {}", character);
